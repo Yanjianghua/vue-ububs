@@ -4,9 +4,11 @@ export default {
         return {
             theme1: 'dark',
             theme3: 'light',
+
         };
     },
-    mounted() {},
+    mounted() {
+    },
     methods: {
 
     }

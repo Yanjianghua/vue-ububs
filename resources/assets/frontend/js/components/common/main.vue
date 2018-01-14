@@ -6,30 +6,27 @@
                     <div class="layout-logo"></div>
                     <div class="layout-nav">
                         <Menu mode="horizontal" :theme="theme1" active-name="1">
-                            <MenuItem name="1">
-                            <Icon type="ios-paper"></Icon>
-                            git文档
-                            </MenuItem>
+                            <MenuItem name="1"><router-link to="/">首页</router-link></MenuItem>
                             <MenuItem name="2">
-                            <Icon type="ios-people"></Icon>
-                            swoole文档
-                            </MenuItem>
-                            <Submenu name="3">
+                            <Icon type="ios-paper"></Icon><router-link to="/index">git文档</router-link></MenuItem>
+                            <MenuItem name="3">
+                            <Icon type="ios-people"></Icon>swoole文档</MenuItem>
+                            <Submenu name="4">
                                 <template slot="title">
                                     <Icon type="stats-bars"></Icon>
                                     PHP相关
                                 </template>
                                 <MenuGroup title="基础">
-                                    <MenuItem name="3-1">安装和使用</MenuItem>
-                                    <MenuItem name="3-2">活跃分析</MenuItem>
-                                    <MenuItem name="3-3">时段分析</MenuItem>
+                                    <MenuItem name="4-1">安装和使用</MenuItem>
+                                    <MenuItem name="4-2">活跃分析</MenuItem>
+                                    <MenuItem name="4-3">时段分析</MenuItem>
                                 </MenuGroup>
                                 <MenuGroup title="进阶">
-                                    <MenuItem name="3-4">用户留存</MenuItem>
-                                    <MenuItem name="3-5">流失用户</MenuItem>
+                                    <MenuItem name="4-4">用户留存</MenuItem>
+                                    <MenuItem name="4-5">流失用户</MenuItem>
                                 </MenuGroup>
                             </Submenu>
-                            <MenuItem name="4">
+                            <MenuItem name="5">
                             <Icon type="settings"></Icon>
                             linux服务器
                             </MenuItem>
@@ -38,7 +35,7 @@
                 </Menu>
             </Header>
             <Layout>
-                <Sider hide-trigger :style="{background: '#fff'}">
+                <Sider hide-trigger :style="{background: '#fff'}" v-show="this.$route.path != '/'">
                     <Menu :theme="theme3" width="auto" active-name="1">
                         <MenuGroup title="内容管理">
                             <MenuItem name="1">
@@ -62,19 +59,13 @@
                         </MenuGroup>
                     </Menu>
                 </Sider>
-                <Layout :style="{padding: '0 24px 24px'}">
-                    <Breadcrumb :style="{margin: '24px 0'}">
-                        <BreadcrumbItem>Home</BreadcrumbItem>
-                        <BreadcrumbItem>Components</BreadcrumbItem>
-                        <BreadcrumbItem>Layout</BreadcrumbItem>
-                    </Breadcrumb>
-                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                <Layout :style="{padding: '14px'}">
+                    <Content :style="{padding: '14px', minHeight: '580px', background: '#fff'}">
                         <router-view></router-view>
                     </Content>
                 </Layout>
             </Layout>
         </Layout>
-    </div>
     </div>
 </template>
 <style type="text/scss" scope="scope">
