@@ -36,4 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // 前台登录界面
+    public function index()
+    {
+        return view('frontend.index');
+    }
 }

@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/', 'LoginController@index');
+});
+Route::group(['namespace' => 'Frontend'], function () {
+
 });

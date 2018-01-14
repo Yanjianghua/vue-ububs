@@ -21,5 +21,8 @@
     "node-sass": "^4.5.0",
     "nprogress": "0.2.0",
     "font-awesome": "^4.7.0"
+  },
+  "dependencies": {
+    "iview": "^2.8.0"
   }
 }
