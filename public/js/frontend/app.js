@@ -70128,12 +70128,18 @@ axios.interceptors.response.use(function (response) {
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 //vue-router
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: __WEBPACK_IMPORTED_MODULE_2__routers_js__["a" /* default */]
+	routes: __WEBPACK_IMPORTED_MODULE_2__routers_js__["a" /* default */]
 });
 
 //vue-router拦截器
 router.beforeEach(function (to, from, next) {
-    next();
+	if (to.path == '/') {
+		next({
+			path: '/document'
+		});
+		return false;
+	}
+	next();
 });
 router.afterEach(function () {});
 /* harmony default export */ __webpack_exports__["a"] = (router);

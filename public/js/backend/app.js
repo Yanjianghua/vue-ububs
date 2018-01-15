@@ -70313,7 +70313,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formValidate: {
                 account: '',
                 password: '',
-                remeber: []
+                remeber: true
             },
             ruleValidate: {
                 account: [{ required: true, message: 'The account cannot be empty', trigger: 'blur' }, { type: 'string', min: 2, message: 'The account no less than 2 words', trigger: 'blur' }],

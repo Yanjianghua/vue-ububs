@@ -11,6 +11,12 @@ const router = new VueRouter({
 
 //vue-router拦截器
 router.beforeEach((to, from, next) => {
+	if (to.path == '/') {
+		next({
+			path: '/document'
+		});
+		return false;
+	}
     next();
 });
 router.afterEach(() => {

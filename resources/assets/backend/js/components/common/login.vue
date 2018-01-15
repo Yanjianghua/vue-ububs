@@ -52,7 +52,7 @@ export default {
             formValidate: {
                 account: '',
                 password: '',
-                remeber: []
+                remeber: true
             },
             ruleValidate: {
                 account: [
