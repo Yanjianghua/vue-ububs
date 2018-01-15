@@ -1,6 +1,6 @@
 
-// 公共组件
-import Main from '../components/common/main.vue';
+// 文档
+import Main from '../components/common/document.vue';
 
 // 首页
 import Index from '../components/index/index.vue';

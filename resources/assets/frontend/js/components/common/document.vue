@@ -6,7 +6,7 @@
                     <div class="layout-logo"></div>
                     <div class="layout-nav">
                         <Menu mode="horizontal" :theme="theme1" active-name="1">
-                            <MenuItem name="1"><router-link to="/">首页</router-link></MenuItem>
+                            <MenuItem name="1"><router-link to="http://www.ububs.com">首页</router-link></MenuItem>
                             <MenuItem name="2">
                             <Icon type="ios-paper"></Icon><router-link to="/index">git文档</router-link></MenuItem>
                             <MenuItem name="3">
@@ -69,6 +69,6 @@
     </div>
 </template>
 <style type="text/scss" scope="scope">
-    @import "../../../sass/common/main.scss";
+    @import "../../../sass/common/document.scss";
 </style>
-<script src="./main.js"></script>
+<script src="../../components-js/common/document.js"></script>
