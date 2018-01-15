@@ -42,4 +42,10 @@ class LoginController extends Controller
     {
         return view('frontend.index');
     }
+
+    // 后台登录界面
+    public function backendIndex()
+    {
+        return view('backend.index');
+    }
 }

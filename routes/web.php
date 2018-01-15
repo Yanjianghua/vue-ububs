@@ -16,6 +16,7 @@
 // });
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('/', 'LoginController@index');
+    Route::get('/backend', 'LoginController@backendIndex');
 });
 Route::group(['namespace' => 'Frontend'], function () {
 
