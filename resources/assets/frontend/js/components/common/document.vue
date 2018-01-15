@@ -6,9 +6,9 @@
                     <div class="layout-logo"></div>
                     <div class="layout-nav">
                         <Menu mode="horizontal" :theme="theme1" active-name="1">
-                            <MenuItem name="1"><router-link to="http://www.ububs.com">首页</router-link></MenuItem>
+                            <MenuItem name="1"><a href="http://www.baidu.com">首页</a></MenuItem>
                             <MenuItem name="2">
-                            <Icon type="ios-paper"></Icon><router-link to="/index">git文档</router-link></MenuItem>
+                            <Icon type="ios-paper"></Icon><router-link to="/document/index">git文档</router-link></MenuItem>
                             <MenuItem name="3">
                             <Icon type="ios-people"></Icon>swoole文档</MenuItem>
                             <Submenu name="4">

@@ -6,4 +6,4 @@
 <style type="text/scss" scope="scope">
     @import "../../../sass/document/index.scss";
 </style>
-<script src="../../components-js/document/index.js"></script>
+<script src="../../components-js/document/index.js"></script> 
