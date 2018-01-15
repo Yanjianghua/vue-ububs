@@ -1,13 +1,12 @@
-
 // 文档
-import Main from '../components/common/document.vue';
-
-// 首页
-import Index from '../components/index/index.vue';
+import Document from '../components/common/document.vue';
+import DocumentIndex from '../components/document/index.vue';
+import DocumentContent from '../components/document/content.vue';
 export default [{
-    path: '/',
-    component: Main,
+    path: '/document',
+    component: Document,
     children: [
-        { path: 'index', component: Index, name: '首页' },
+        { path: 'index', component: DocumentIndex, name: '文档首页' },
+        { path: 'content', component: DocumentContent, name: '文档内容' },
     ]
 }];
