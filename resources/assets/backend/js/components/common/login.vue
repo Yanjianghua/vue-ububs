@@ -21,63 +21,6 @@
     </div>
 </template>
 <style type="text/scss" scope="scope">
-h2 {
-    font-size: 26px;
-        font-weight: 400;
-        color: #eeeeee;
-        margin: 0px auto 40px auto;
-        text-align: center;
-        font-weight: bold;
-}
-.login-container {
-    position: relative;
-    height: 100vh;
-    background-color: #2d3a4b;
-    
-}
-.login-form {
-        position: absolute;
-        left: 0;
-        right: 0;
-        width: 450px;
-        padding: 35px 35px 15px 35px;
-        margin: 120px auto;
-        background: #fafafa;
-    }
+    @import "../../../sass/common/login.scss";
 </style>
-<script type="text/javascript">
-export default {
-    data() {
-        return {
-            formValidate: {
-                account: '',
-                password: '',
-                remeber: true
-            },
-            ruleValidate: {
-                account: [
-                    { required: true, message: 'The account cannot be empty', trigger: 'blur' },
-                    { type: 'string', min: 2, message: 'The account no less than 2 words', trigger: 'blur' }
-                ],
-                password: [
-                    { required: true, message: 'Password cannot be empty', trigger: 'blur' },
-                ],
-            }
-        }
-    },
-    methods: {
-        handleSubmit(name) {
-            this.$refs[name].validate((valid) => {
-                if (valid) {
-                    this.$Message.success('Success!');
-                } else {
-                    this.$Message.error('Fail!');
-                }
-            })
-        },
-        handleReset(name) {
-            this.$refs[name].resetFields();
-        }
-    },
-}
-</script>
+<script src="../../components-js/common/login.js"></script>
