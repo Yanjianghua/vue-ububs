@@ -6,6 +6,7 @@ export default {
                 password: '',
                 remeber: true
             },
+            loading: false,
             ruleValidate: {
                 account: [
                     { required: true, message: 'The account cannot be empty', trigger: 'blur' },
@@ -22,16 +23,12 @@ export default {
             let _this = this;
             _this.$refs[name].validate((valid) => {
                 if (valid) {
-                    _this.loading = true;
+                    _this.$store.commit('setStateValue', {'loading': true});
                     axios.post('/backend/login', _this.loginForm).then(function(response) {
-                        _this.loading = false;
-                        let { status, data, message } = response.data;
-                        if (!status) {
-                            _this.$message.error(message);
-                            return false;
-                        }
+                        _this.$store.commit('setStateValue', {'loading': false});
+                        let { data, message } = response.data;
                         _this.$store.commit('setStateValue', { 'admin_data': data.list });
-                        _this.$message.success(message);
+                        _this.$Message.success(message);
                         _this.$router.push({ path: '/index' });
                     });
                 }

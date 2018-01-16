@@ -17,6 +17,7 @@
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('/', 'LoginController@index');
     Route::get('/backend', 'LoginController@backendIndex');
+    Route::post('/backend/login', 'LoginController@backendLogin');
 });
 Route::group(['namespace' => 'Frontend'], function () {
 

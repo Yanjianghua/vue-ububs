@@ -14,7 +14,7 @@
                 </i-switch>
             </FormItem>
             <FormItem>
-                <Button type="primary" :loading="loading" @click="login('loginForm')">登录</Button>
+                <Button type="primary" :loading="this.$store.state.loading" @click="login('loginForm')">登录</Button>
                 <Button type="ghost" @click="reset('loginForm')" style="margin-left: 8px">重置</Button>
             </FormItem>
         </Form>

@@ -5,8 +5,8 @@
  */
 window._ = require('lodash');
 window.Vue = require('vue');
-import './axios';
 import store from './vuex';
+import './axios';
 import router from './router';
 import './plugin';
 import * as filters from './filter';

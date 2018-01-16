@@ -70011,8 +70011,20 @@ module.exports = "/fonts/vendor/iview/dist/styles/ionicons.svg?621bd386841f74e00
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-    state: {},
-    mutations: {}
+    state: {
+        'loading': false,
+        'admin_data': {
+            username: '',
+            email: ''
+        }
+    },
+    mutations: {
+        setStateValue: function setStateValue(state, data) {
+            for (var item in data) {
+                state[item] = data[item];
+            }
+        }
+    }
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
@@ -70053,11 +70065,11 @@ module.exports = __webpack_require__(78);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__axios__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vuex__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vuex__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugin__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filter__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugin__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filter__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_iview__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_iview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_iview__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_iview_dist_styles_iview_css__ = __webpack_require__(46);
@@ -70091,7 +70103,7 @@ var app = new Vue({
     },
 
     router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */],
-    store: __WEBPACK_IMPORTED_MODULE_1__vuex__["a" /* default */]
+    store: __WEBPACK_IMPORTED_MODULE_0__vuex__["a" /* default */]
 }).$mount('#app');
 
 /***/ }),
@@ -70099,11 +70111,13 @@ var app = new Vue({
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nprogress__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nprogress___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_nprogress__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nprogress_nprogress_css__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nprogress_nprogress_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_nprogress_nprogress_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vuex__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nprogress__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nprogress___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_nprogress__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nprogress_nprogress_css__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nprogress_nprogress_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nprogress_nprogress_css__);
 window.axios = __webpack_require__(19);
+
 
 
 
@@ -70118,14 +70132,24 @@ if (token) {
 
 //axios拦截器
 axios.interceptors.request.use(function (config) {
-    __WEBPACK_IMPORTED_MODULE_0_nprogress___default.a.start();
+    __WEBPACK_IMPORTED_MODULE_1_nprogress___default.a.start();
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
 
 axios.interceptors.response.use(function (response) {
-    __WEBPACK_IMPORTED_MODULE_0_nprogress___default.a.done();
+    __WEBPACK_IMPORTED_MODULE_1_nprogress___default.a.done();
+    var _response$data = response.data,
+        status = _response$data.status,
+        message = _response$data.message;
+
+    if (!status) {
+        // 返回失败直接处理
+        new Vue().$Message.error(message);
+        __WEBPACK_IMPORTED_MODULE_0__vuex__["a" /* default */].commit('setStateValue', { 'loading': false });
+        return new Promise(function () {});
+    }
     return response;
 }, function (error) {
     return Promise.reject(error);
@@ -70181,13 +70205,13 @@ router.afterEach(function () {});
 
 
 /* styles */
-__webpack_require__(91)
+__webpack_require__(83)
 
 var Component = __webpack_require__(12)(
   /* script */
-  __webpack_require__(94),
-  /* template */
   __webpack_require__(86),
+  /* template */
+  __webpack_require__(87),
   /* scopeId */
   null,
   /* cssModules */
@@ -70214,20 +70238,118 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */,
-/* 84 */,
-/* 85 */,
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("44020d9e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-659ee714\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./login.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-659ee714\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+exports.i(__webpack_require__(85), "");
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".login-container {\r\n    position: relative;\r\n    height: 100vh;\r\n    background-color: #2d3a4b;\r\n}\r\n.login-form {\r\n        position: absolute;\r\n        left: 0;\r\n        right: 0;\r\n        width: 450px;\r\n        padding: 35px 35px 15px 35px;\r\n        margin: 120px auto;\r\n        background: #fafafa;\r\n    }", ""]);
+
+// exports
+
+
+/***/ }),
 /* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            loginForm: {
+                account: '',
+                password: '',
+                remeber: true
+            },
+            loading: false,
+            ruleValidate: {
+                account: [{ required: true, message: 'The account cannot be empty', trigger: 'blur' }, { type: 'string', min: 2, message: 'The account no less than 2 words', trigger: 'blur' }],
+                password: [{ required: true, message: 'Password cannot be empty', trigger: 'blur' }]
+            }
+        };
+    },
+
+    methods: {
+        login: function login(name) {
+            var _this = this;
+            _this.$refs[name].validate(function (valid) {
+                if (valid) {
+                    _this.$store.commit('setStateValue', { 'loading': true });
+                    axios.post('/backend/login', _this.loginForm).then(function (response) {
+                        _this.$store.commit('setStateValue', { 'loading': false });
+                        var _response$data = response.data,
+                            data = _response$data.data,
+                            message = _response$data.message;
+
+                        _this.$store.commit('setStateValue', { 'admin_data': data.list });
+                        _this.$Message.success(message);
+                        _this.$router.push({ path: '/index' });
+                    });
+                }
+            });
+        },
+        reset: function reset(name) {
+            this.$refs[name].resetFields();
+        }
+    }
+});
+
+/***/ }),
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "login-container"
   }, [_c('Form', {
-    ref: "formValidate",
+    ref: "loginForm",
     staticClass: "login-form",
     attrs: {
-      "model": _vm.formValidate,
+      "model": _vm.loginForm,
       "label-width": 60,
       "rules": _vm.ruleValidate
     }
@@ -70241,11 +70363,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "Enter your account"
     },
     model: {
-      value: (_vm.formValidate.account),
+      value: (_vm.loginForm.account),
       callback: function($$v) {
-        _vm.$set(_vm.formValidate, "account", $$v)
+        _vm.$set(_vm.loginForm, "account", $$v)
       },
-      expression: "formValidate.account"
+      expression: "loginForm.account"
     }
   })], 1), _vm._v(" "), _c('FormItem', {
     attrs: {
@@ -70258,11 +70380,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "Enter your password"
     },
     model: {
-      value: (_vm.formValidate.password),
+      value: (_vm.loginForm.password),
       callback: function($$v) {
-        _vm.$set(_vm.formValidate, "password", $$v)
+        _vm.$set(_vm.loginForm, "password", $$v)
       },
-      expression: "formValidate.password"
+      expression: "loginForm.password"
     }
   })], 1), _vm._v(" "), _c('FormItem', {
     attrs: {
@@ -70270,11 +70392,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i-switch', {
     model: {
-      value: (_vm.formValidate.remeber),
+      value: (_vm.loginForm.remeber),
       callback: function($$v) {
-        _vm.$set(_vm.formValidate, "remeber", $$v)
+        _vm.$set(_vm.loginForm, "remeber", $$v)
       },
-      expression: "formValidate.remeber"
+      expression: "loginForm.remeber"
     }
   }, [_c('span', {
     attrs: {
@@ -70288,11 +70410,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "close"
   }, [_vm._v("否")])])], 1), _vm._v(" "), _c('FormItem', [_c('Button', {
     attrs: {
-      "type": "primary"
+      "type": "primary",
+      "loading": this.$store.state.loading
     },
     on: {
       "click": function($event) {
-        _vm.handleSubmit('formValidate')
+        _vm.login('loginForm')
       }
     }
   }, [_vm._v("登录")]), _vm._v(" "), _c('Button', {
@@ -70304,7 +70427,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.handleReset('formValidate')
+        _vm.reset('loginForm')
       }
     }
   }, [_vm._v("重置")])], 1)], 1)], 1)
@@ -70318,7 +70441,7 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70344,7 +70467,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(plugins);
 /* unused harmony default export */ var _unused_webpack_default_export = (plugins);
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70463,101 +70586,6 @@ function defaultValue(value, defaultString) {
     }
     return value;
 }
-
-/***/ }),
-/* 89 */,
-/* 90 */,
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(92);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(14)("44020d9e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-659ee714\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./login.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-659ee714\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./login.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-exports.i(__webpack_require__(93), "");
-
-// module
-exports.push([module.i, "\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".login-container {\r\n    position: relative;\r\n    height: 100vh;\r\n    background-color: #2d3a4b;\r\n}\r\n.login-form {\r\n        position: absolute;\r\n        left: 0;\r\n        right: 0;\r\n        width: 450px;\r\n        padding: 35px 35px 15px 35px;\r\n        margin: 120px auto;\r\n        background: #fafafa;\r\n    }", ""]);
-
-// exports
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            formValidate: {
-                account: '',
-                password: '',
-                remeber: true
-            },
-            ruleValidate: {
-                account: [{ required: true, message: 'The account cannot be empty', trigger: 'blur' }, { type: 'string', min: 2, message: 'The account no less than 2 words', trigger: 'blur' }],
-                password: [{ required: true, message: 'Password cannot be empty', trigger: 'blur' }]
-            }
-        };
-    },
-
-    methods: {
-        handleSubmit: function handleSubmit(name) {
-            var _this = this;
-
-            this.$refs[name].validate(function (valid) {
-                if (valid) {
-                    _this.$Message.success('Success!');
-                } else {
-                    _this.$Message.error('Fail!');
-                }
-            });
-        },
-        handleReset: function handleReset(name) {
-            this.$refs[name].resetFields();
-        }
-    }
-});
 
 /***/ })
 /******/ ]);

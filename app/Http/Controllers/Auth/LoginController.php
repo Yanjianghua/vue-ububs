@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Common\BaseController;
+use App\Servers\Backend\LoginServer as AdminLoginServer;
+use App\Servers\Frontend\LoginServer as UserLoginServer;
+use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -32,9 +36,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AdminLoginServer $adminLoginServer, UserLoginServer $userLoginServer)
     {
-        $this->middleware('guest')->except('logout');
+        $this->adminLoginServer = $adminLoginServer;
+        $this->userLoginServer       = $userLoginServer;
     }
 
     // 前台登录界面
@@ -47,5 +52,11 @@ class LoginController extends Controller
     public function backendIndex()
     {
         return view('backend.index');
+    }
+
+    public function backendLogin(Request $request)
+    {
+        $result = $this->adminLoginServer->login($request->all());
+        return $this->responseResult($result);
     }
 }
