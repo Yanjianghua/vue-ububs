@@ -36,7 +36,5 @@ class BaseController extends Controller
         // 返回成功信息
         $result['status'] = true;
         return response()->json($result);
-
-        
     }
 }
