@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            formValidate: {
+            loginForm: {
                 account: '',
                 password: '',
                 remeber: true
@@ -18,16 +18,26 @@ export default {
         }
     },
     methods: {
-        handleSubmit(name) {
-            this.$refs[name].validate((valid) => {
+        login(name) {
+            let _this = this;
+            _this.$refs[name].validate((valid) => {
                 if (valid) {
-                    this.$Message.success('Success!');
-                } else {
-                    this.$Message.error('Fail!');
+                    _this.loading = true;
+                    axios.post('/backend/login', _this.loginForm).then(function(response) {
+                        _this.loading = false;
+                        let { status, data, message } = response.data;
+                        if (!status) {
+                            _this.$message.error(message);
+                            return false;
+                        }
+                        _this.$store.commit('setStateValue', { 'admin_data': data.list });
+                        _this.$message.success(message);
+                        _this.$router.push({ path: '/index' });
+                    });
                 }
             })
         },
-        handleReset(name) {
+        reset(name) {
             this.$refs[name].resetFields();
         }
     },
