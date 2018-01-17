@@ -22,8 +22,6 @@ Object.keys(filters).forEach(key => {
 
 const app = new Vue({
     beforeCreate() {
-        const __JS_DIR__ = './component-js/';
-        const __CSS_DIR__ = '../sass/';
     },
     router,
     store

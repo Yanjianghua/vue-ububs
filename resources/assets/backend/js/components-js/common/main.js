@@ -1,5 +1,8 @@
+import SidebarMenu from '../../components/common/SidebarMenu.vue';
 export default {
-    components: {},
+    components: {
+        SidebarMenu
+    },
     data() {
         return {
         };
