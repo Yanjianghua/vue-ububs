@@ -1,13 +1,16 @@
 import Main from '../components/common/main.vue';
 import Login from '../components/common/login.vue';
-import AdminIndex from '../components/admin/index.vue';
+import AdminLists from '../components/admin/lists.vue';
+import AdminPermission from '../components/admin/permission.vue';
 
 export default [{
+    id: 100,
     path: '/login',
     component: Login,
     name: '登录',
     hidden: true,
 }, {
+    id: 200,
     path: '/index',
     component: Main,
     name: '首页',
@@ -17,12 +20,22 @@ export default [{
         // { path: 'index', component: Index, name: '首页'}
     ]
 }, {
+    id: 300,
     path: '/admin',
     component: Main,
     name: '管理员管理',
     iconCls: 'ios-navigate', //图标样式class
     children: [
-        { path: 'lists', component: AdminIndex, name: '管理员列表' },
-        { path: 'permission', component: AdminIndex, name: '管理员权限' },
+        { id: 301, path: 'lists', component: AdminLists, name: '管理员列表' },
+        { id: 302, path: 'permission', component: AdminPermission, name: '管理员权限' },
+    ]
+}, {
+    id: 400,
+    path: '/user',
+    component: Main,
+    name: '用户管理',
+    iconCls: 'ios-navigate', //图标样式class
+    children: [
+        { id: 401, path: 'lists', component: AdminLists, name: '用户列表' },
     ]
 }];

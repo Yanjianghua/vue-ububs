@@ -1,5 +1,4 @@
 export default {
-    components: {},
     data() {
         return {
         };
@@ -7,6 +6,8 @@ export default {
     mounted() {
     },
     methods: {
-
+    	toPath(path) {
+    		this.$router.push(path);
+    	}
     }
 }
