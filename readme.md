@@ -1,58 +1,49 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## 前言 ##
+- 本项目属业余时间开发，纯属为了交流与学习，代码质量与性能等优化持续进行
+- 目前属于开发阶段，更新的比较频繁，项目大体功能已实现，如果这个项目对你有帮助，请给个star，谢谢！（2018-01-19）
+- 前台地址：**xxx.com**
+- 后台地址：**xxx.com/backend**
+- QQ：**292304400**，微信：**Ruizhenger**，邮箱：**linlm1994@gmail.com**，欢迎交流
+- 持续更新ing
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 项目简介 ##
+> 本项目同时开发前后台，主要使用laravel + vue + iview + webpack，代码严格遵守psr-2规范，感谢支持！
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Technology application ##
+- laravel5.5 + vue2.0 + vuex + vue-router + webpack + ES6/7 + iview + redis + sass
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements ##
+- PHP 7
+- mysql 5.6 or later
+- composer （download link：[https://getcomposer.org/download/](https://getcomposer.org/download/ "composer下载地址")）
+- nodejs （download link：[http://nodejs.cn/download/](http://nodejs.cn/download/ "nodejs下载地址")）
+- npm （New version of the nedejs has include it）
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## Install ##
+#### 1. Clone the source code or create new project. ####
+> git clone https://github.com/linlianmin/ububs.git
 
-## Learning Laravel
+#### 2. Set the basic config ####
+> cp .env.example .env
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+#### 3. Create laravel app_key and create database  ####
+> php artisan key:generate
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+> php artisan migrate:refresh --seed （must be set database config）
+#### 4. Install the extended package dependency ####
+> composer install
 
-## Laravel Sponsors
+> npm install
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+if npm speeds slower，can do command（npm install -g cnpm --registry=https://registry.npm.taobao.org）,if do this, npm should be change cnpm
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+#### 5. Install yarn and run it ####
+> npm install -g yarn
 
-## Contributing
+> yarn run dev
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Now we can visit it, thank you for your reading!
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Preview ##
+The future update, thank you!
