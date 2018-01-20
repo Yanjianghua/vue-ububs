@@ -1,13 +1,17 @@
-import SidebarMenu from '../../components/common/SidebarMenu.vue';
+import headerMenu from '../../components/common/headerMenu.vue';
+import sidebarMenu from '../../components/common/sidebarMenu.vue';
 export default {
     components: {
-        SidebarMenu
+        headerMenu,
+        sidebarMenu
     },
     data() {
         return {
+            breadcrumbItem: {}
         };
     },
     mounted() {
+
     },
     methods: {
 

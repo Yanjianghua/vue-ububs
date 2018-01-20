@@ -24,10 +24,9 @@ export default {
             _this.$refs[name].validate((valid) => {
                 if (valid) {
                     _this.$store.commit('setStateValue', {'loading': true});
-                    axios.post('/backend/login', _this.loginForm).then(function(response) {
-                        _this.$store.commit('setStateValue', {'loading': false});
+                    axios.post('/backend/login', _this.loginForm).then((response) => {
                         let { data, message } = response.data;
-                        _this.$store.commit('setStateValue', { 'admin_data': data.list });
+                        _this.$store.commit('setStateValue', { 'loading': false, 'admin_data': data.list });
                         _this.$Message.success(message);
                         _this.$router.push({ path: '/index' });
                     });

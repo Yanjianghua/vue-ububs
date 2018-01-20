@@ -59,4 +59,10 @@ class LoginController extends BaseController
         $result = $this->adminLoginServer->login($request->all());
         return $this->responseResult($result);
     }
+
+    public function backendLogout()
+    {
+        $result = $this->adminLoginServer->logout();
+        return $this->responseResult($result);
+    }
 }

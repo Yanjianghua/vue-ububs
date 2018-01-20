@@ -39,4 +39,12 @@ class LoginServer extends CommonServer
             'message' => '登录成功',
         ];
     }
+    public function logout()
+    {
+        $result = $this->login->logout();
+        return [
+            'data' => [],
+            'message' => '退出成功'
+        ];
+    }
 }
