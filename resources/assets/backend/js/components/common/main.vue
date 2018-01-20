@@ -12,7 +12,7 @@
                     <sidebarMenu></sidebarMenu> 
                 </Sider>
                 <Layout :style="{padding: '14px'}">
-                    <Content :style="{padding: '14px', minHeight: '280px', background: '#fff'}">
+                    <Content :style="{padding: '14px', minHeight: '400px', background: '#fff'}">
                         <router-view></router-view>
                     </Content>
                 </Layout>

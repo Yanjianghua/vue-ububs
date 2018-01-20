@@ -23,3 +23,6 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Frontend'], function () {
 
 });
+Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => 'auth.admin'], function () {
+	Route::resource('admins', 'AdminController');
+});

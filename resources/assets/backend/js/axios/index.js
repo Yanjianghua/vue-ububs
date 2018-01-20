@@ -31,5 +31,7 @@ axios.interceptors.response.use((response) => {
     }
     return response;
 }, (error) => {
+    new Vue().$Message.error('很遗憾，发生未知错误！');
+    NProgress.done();
     return Promise.reject(error);
 });

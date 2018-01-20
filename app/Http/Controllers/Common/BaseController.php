@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 class BaseController extends Controller
 {
     protected $server;
+    protected $request;
 
     public function __construct()
     {

@@ -26,7 +26,8 @@ export default {
                     _this.$store.commit('setStateValue', {'loading': true});
                     axios.post('/backend/login', _this.loginForm).then((response) => {
                         let { data, message } = response.data;
-                        _this.$store.commit('setStateValue', { 'loading': false, 'admin_data': data.list });
+                        localStorage.setItem('admin_data',JSON.stringify(data.list));
+                        _this.$store.commit('setStateValue', { 'loading': false, 'admin_data': JSON.parse(localStorage.getItem('admin_data')) });
                         _this.$Message.success(message);
                         _this.$router.push({ path: '/index' });
                     });

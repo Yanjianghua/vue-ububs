@@ -3,6 +3,7 @@ namespace App\Servers\Common;
 
 abstract class BaseServer
 {
+    protected $request;
     protected $adminRepository;
     protected $articleRepository;
     protected $categoryRepository;
