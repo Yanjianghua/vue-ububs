@@ -70316,7 +70316,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".layout {\r\n    border: 1px solid #d7dde4;\r\n    background: #f5f7f9;\r\n    position: relative;\r\n    border-radius: 4px;\r\n    overflow: hidden;\r\n}\r\n\r\n.layout-logo {\r\n    width: 100px;\r\n    height: 30px;\r\n    background: #5b6270;\r\n    border-radius: 3px;\r\n    float: left;\r\n    position: relative;\r\n    top: 15px;\r\n    left: 20px;\r\n}\r\n\r\n.layout-nav {\r\n    width: 600px;\r\n    margin: 0 auto;\r\n    margin-right: 20px;\r\n}\r\n.search-box {\r\n    margin-bottom: 20px;\r\n}\r\n.pagination-box {\r\n    padding: 20px 0;\r\n    text-align: right;\r\n}", ""]);
+exports.push([module.i, ".layout{\r\n        border: 1px solid #d7dde4;\r\n        background: #f5f7f9;\r\n        position: relative;\r\n        border-radius: 4px;\r\n        overflow: hidden;\r\n    }\r\n    .layout-header-bar{\r\n        background: #fff;\r\n        box-shadow: 0 1px 1px rgba(0,0,0,.1);\r\n    }\r\n\r\n.layout-logo {\r\n    width: 100px;\r\n    height: 30px;\r\n    background: #5b6270;\r\n    border-radius: 3px;\r\n    float: left;\r\n    position: relative;\r\n    top: 15px;\r\n    left: 20px;\r\n}\r\n\r\n.layout-nav {\r\n    width: 600px;\r\n    margin: 0 auto;\r\n    margin-right: 20px;\r\n}\r\n.search-box {\r\n    margin-bottom: 20px;\r\n}\r\n.table-footer {\r\n    padding: 20px 0;\r\n}\r\n.table-footer .batch-box {\r\n    float: left;\r\n}\r\n.table-footer .pagination-box {\r\n    float: right;\r\n    text-align: right;\r\n}", ""]);
 
 // exports
 
@@ -70742,7 +70742,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       minHeight: '400px',
       background: '#fff'
     })
-  }, [_c('router-view')], 1)], 1)], 1)], 1)], 1)
+  }, [_c('router-view')], 1), _vm._v(" "), _c('Footer', {
+    staticClass: "layout-footer-center"
+  }, [_c('p', [_vm._v("版权所有：2018 © www.ububs.com")]), _vm._v(" "), _c('p', [_vm._v("联系邮箱：linlm1994@gmail.com")])])], 1)], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -71091,38 +71093,18 @@ exports.push([module.i, "", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         var _this2 = this;
 
-        return _defineProperty({
+        return {
             search: {
                 username: '',
                 permission_id: ''
             },
-            pagination: {
-                current_page: ''
-            },
             cityList: [{
                 value: 'New York',
                 label: 'New York'
-            }, {
-                value: 'London',
-                label: 'London'
-            }, {
-                value: 'Sydney',
-                label: 'Sydney'
-            }, {
-                value: 'Ottawa',
-                label: 'Ottawa'
-            }, {
-                value: 'Paris',
-                label: 'Paris'
-            }, {
-                value: 'Canberra',
-                label: 'Canberra'
             }],
             columns: [{
                 type: 'selection',
@@ -71175,28 +71157,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     }, 'Delete')]);
                 }
             }],
-            data: [{
-                name: 'John Brown',
-                age: 18,
-                address: 'New York No. 1 Lake Park'
-            }, {
-                name: 'Jim Green',
-                age: 24,
-                address: 'London No. 1 Lake Park'
-            }, {
-                name: 'Joe Black',
-                age: 30,
-                address: 'Sydney No. 1 Lake Park'
-            }, {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park'
-            }]
-        }, 'pagination', {
-            total: 100000,
-            currentPage: 2,
-            pageSize: 15
-        });
+            data: [],
+            pagination: {
+                total: 0,
+                currentPage: 1,
+                pageSize: 20
+            }
+        };
     },
     mounted: function mounted() {
         this.getLists();
@@ -71207,9 +71174,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var _this = this;
             var paramsData = {
                 'search': _this.search,
-                'pagination': _this.pagination
+                'page': _this.pagination.currentPage,
+                'pageSize': _this.pagination.pageSize
             };
-            axios.get('/backend/admins', { params: paramsData }).then(function (response) {});
+            axios.get('/backend/admins', { params: paramsData }).then(function (response) {
+                var _response$data = response.data,
+                    data = _response$data.data,
+                    message = _response$data.message;
+
+                _this.data = data.lists.data;
+                _this.pagination.total = data.lists.total;
+            });
         },
         show: function show(index) {
             this.$Modal.info({
@@ -71220,8 +71195,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         remove: function remove(index) {
             this.data.splice(index, 1);
         },
-        currentPageChange: function currentPageChange() {},
-        pageSizeChange: function pageSizeChange() {}
+
+        currentPageChange: function currentPageChange(currentPage) {
+            this.pagination.currentPage = currentPage;
+            this.getLists();
+        },
+        pageSizeChange: function pageSizeChange(pageSize) {
+            this.pagination.pageSize = pageSize;
+            this.getLists();
+        }
     }
 });
 
@@ -71278,17 +71260,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data": _vm.data
     }
   }), _vm._v(" "), _c('div', {
+    staticClass: "table-footer"
+  }, [_c('div', {
+    staticClass: "batch-box"
+  }, [_c('Button', {
+    attrs: {
+      "size": "small"
+    },
+    on: {
+      "click": function($event) {
+        _vm.handleSelectAll(true)
+      }
+    }
+  }, [_vm._v("批量删除")])], 1), _vm._v(" "), _c('div', {
     staticClass: "pagination-box"
   }, [_c('Page', {
     attrs: {
+      "size": "small",
       "total": _vm.pagination.total,
       "current": _vm.pagination.currentPage,
       "page-size": _vm.pagination.pageSize,
-      "on-change": "currentPageChange",
-      "on-page-size-change": "pageSizeChange",
-      "show-total": ""
+      "page-size-opts": [20, 50, 100],
+      "show-total": "",
+      "show-sizer": ""
+    },
+    on: {
+      "on-change": _vm.currentPageChange,
+      "on-page-size-change": _vm.pageSizeChange
     }
-  })], 1)], 1)
+  })], 1)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

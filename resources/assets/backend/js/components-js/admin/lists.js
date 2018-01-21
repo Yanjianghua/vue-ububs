@@ -5,32 +5,9 @@ export default {
                 username: '',
                 permission_id: '',
             },
-            pagination: {
-                current_page: ''
-            },
             cityList: [{
                     value: 'New York',
                     label: 'New York'
-                },
-                {
-                    value: 'London',
-                    label: 'London'
-                },
-                {
-                    value: 'Sydney',
-                    label: 'Sydney'
-                },
-                {
-                    value: 'Ottawa',
-                    label: 'Ottawa'
-                },
-                {
-                    value: 'Paris',
-                    label: 'Paris'
-                },
-                {
-                    value: 'Canberra',
-                    label: 'Canberra'
                 }
             ],
             columns: [{
@@ -93,31 +70,11 @@ export default {
                     }
                 }
             ],
-            data: [{
-                    name: 'John Brown',
-                    age: 18,
-                    address: 'New York No. 1 Lake Park'
-                },
-                {
-                    name: 'Jim Green',
-                    age: 24,
-                    address: 'London No. 1 Lake Park'
-                },
-                {
-                    name: 'Joe Black',
-                    age: 30,
-                    address: 'Sydney No. 1 Lake Park'
-                },
-                {
-                    name: 'Jon Snow',
-                    age: 26,
-                    address: 'Ottawa No. 2 Lake Park'
-                }
-            ],
+            data: [],
             pagination: {
-                total: 100000,
-                currentPage: 2,
-                pageSize: 15,
+                total: 0,
+                currentPage: 1,
+                pageSize: 20,
             }
         }
     },
@@ -129,10 +86,13 @@ export default {
             let _this = this;
             let paramsData = {
                 'search': _this.search,
-                'pagination': _this.pagination
+                'page': _this.pagination.currentPage,
+                'pageSize': _this.pagination.pageSize
             };
-            axios.get('/backend/admins', { params: paramsData }).then(response => {
-
+            axios.get('/backend/admins', { params: paramsData }).then((response) => {
+                let {data, message} = response.data;
+                _this.data = data.lists.data;
+                _this.pagination.total = data.lists.total;
             })
         },
         show(index) {
@@ -144,7 +104,13 @@ export default {
         remove(index) {
             this.data.splice(index, 1);
         },
-        currentPageChange() {},
-        pageSizeChange() {},
+        currentPageChange: function(currentPage) {
+            this.pagination.currentPage = currentPage;
+            this.getLists();
+        },
+        pageSizeChange: function(pageSize) {
+            this.pagination.pageSize = pageSize;
+            this.getLists();
+        },
     }
 }

@@ -21,9 +21,8 @@ class AdminRepository extends CommonRepository
     public function getLists($input)
     {
         $search = isset($input['search']) ? (array) $input['search'] : [];
-        $pagination = isset($input['pagination']) ? (array) $input['pagination'] : [];
-
-        $result = DB::table('admins')->get();
+        $pageSize = isset($input['pageSize']) ? intval($input['pageSize']): 10;
+        $result = DB::table('admins')->paginate($pageSize);
         return $result;
     }
 }

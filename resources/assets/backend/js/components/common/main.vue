@@ -15,6 +15,10 @@
                     <Content :style="{padding: '14px', minHeight: '400px', background: '#fff'}">
                         <router-view></router-view>
                     </Content>
+                    <Footer class="layout-footer-center">
+                        <p>版权所有：2018 &copy; www.ububs.com</p>
+                        <p>联系邮箱：linlm1994@gmail.com</p>
+                    </Footer>
                 </Layout>
             </Layout>
         </Layout>

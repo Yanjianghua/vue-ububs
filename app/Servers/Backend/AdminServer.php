@@ -20,7 +20,10 @@ class AdminServer extends CommonServer
     public function index($input)
     {
         $result['lists']   = $this->admin->getLists($input);
-        return ['获取成功', $result];
+        return [
+            'data' => $result,
+            'message' => '获取成功'
+        ];
     }
 
     /**

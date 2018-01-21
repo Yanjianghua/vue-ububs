@@ -8,9 +8,15 @@
             <Button type="primary">搜索</Button>
         </div>
         <Table border :columns="columns" :data="data"></Table>
-        <div class="pagination-box">
-            <Page :total="pagination.total" :current="pagination.currentPage" :page-size="pagination.pageSize" on-change="currentPageChange" on-page-size-change="pageSizeChange" show-total></Page>
+        <div class="table-footer">
+            <div class="batch-box">
+                <Button size="small" @click="handleSelectAll(true)">批量删除</Button>
+            </div>
+            <div class="pagination-box">
+            <Page size="small" :total="pagination.total" :current="pagination.currentPage" :page-size="pagination.pageSize" @on-change="currentPageChange" @on-page-size-change="pageSizeChange" :page-size-opts="[20, 50, 100]" show-total show-sizer></Page>
         </div>
+        </div>
+        
     </div>
 </template>
 <style type="text/scss" scope="scope">
