@@ -24,7 +24,7 @@
         </Submenu>
     </div>
 </template>
-<style type="text/scss" scope="scope">
+<style rel="stylesheet/sass" lang="sass" scoped>
     @import "../../../sass/common/headerMenu.scss";
 </style>
 <script src="../../components-js/common/headerMenu.js"></script>

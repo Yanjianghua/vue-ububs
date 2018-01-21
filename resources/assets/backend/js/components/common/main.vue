@@ -27,7 +27,7 @@
         </Layout>
     </div>
 </template>
-<style type="text/scss" scope="scope">
+<style rel="stylesheet/sass" lang="sass">
     @import "../../../sass/common/main.scss";
 </style>
 <script src="../../components-js/common/main.js"></script>

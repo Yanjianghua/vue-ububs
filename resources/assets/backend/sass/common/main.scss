@@ -34,15 +34,13 @@
 
 .table-footer {
     padding: 20px 0;
-}
-
-.table-footer .batch-box {
-    float: left;
-}
-
-.table-footer .pagination-box {
-    float: right;
-    text-align: right;
+    .batch-box {
+        float: left;
+    }
+    .pagination-box {
+        float: right;
+        text-align: right;
+    }
 }
 
 .top-inner {
@@ -56,14 +54,13 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
     transition: all .2s ease-in-out;
     z-index: 9000;
+    i {
+        color: #fff;
+        font-size: 24px;
+        padding: 8px 12px;
+    }
 }
 
 .top-inner:hover {
     background-color: rgba(0, 0, 0, .7);
-}
-
-.top-inner i {
-    color: #fff;
-    font-size: 24px;
-    padding: 8px 12px;
 }

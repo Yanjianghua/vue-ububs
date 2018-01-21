@@ -3,7 +3,7 @@
         test
     </div>
 </template>
-<style type="text/scss" scope="scope">
+<style rel="stylesheet/sass" lang="sass" scoped>
     @import "../../../sass/document/index.scss";
 </style>
 <script src="../../components-js/document/index.js"></script> 

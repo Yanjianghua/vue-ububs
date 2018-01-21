@@ -16,7 +16,7 @@
         </template>
     </Menu>
 </template>
-<style type="text/scss" scope="scope">
+<style rel="stylesheet/sass" lang="sass" scoped>
     @import "../../../sass/common/sidebarMenu.scss";
 </style>
 <script src="../../components-js/common/sidebarMenu.js"></script>

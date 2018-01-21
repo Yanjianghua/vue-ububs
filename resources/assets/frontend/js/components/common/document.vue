@@ -68,7 +68,7 @@
         </Layout>
     </div>
 </template>
-<style type="text/scss" scope="scope">
+<style rel="stylesheet/sass" lang="sass" scoped>
     @import "../../../sass/common/document.scss";
 </style>
 <script src="../../components-js/common/document.js"></script>
