@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\Authenticatable as ContractsAuthenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable as AuthAuthenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as ContractsAuthenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Admin extends Base implements ContractsAuthenticatable
 {

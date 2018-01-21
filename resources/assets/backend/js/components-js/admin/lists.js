@@ -2,8 +2,14 @@ export default {
     data() {
         return {
             search: {
-                username: '',
-                permission_id: '',
+                username: {
+                    'value': '',
+                    'type': 'like'
+                },
+                permission_id: {
+                    'value': '',
+                    'type': '='
+                },
             },
             cityList: [{
                 value: 'New York',
@@ -83,8 +89,9 @@ export default {
     methods: {
         getLists() {
             let _this = this;
+            let search = Vue.parseSearch(_this.search);
             let paramsData = {
-                'search': _this.search,
+                'search': search,
                 'page': _this.pagination.currentPage,
                 'pageSize': _this.pagination.pageSize
             };

@@ -12,6 +12,22 @@ const plugins = {
             evt = evt || window.event;
             return evt.clientY
         };
+        // 过滤search条件
+        Vue.parseSearch =  function(searchCondition) {
+            let result = [];
+            if (Object.keys(searchCondition).length == 0) {
+                return result;
+            }
+            for (let key in searchCondition) {
+                if (searchCondition[key].value === '' || searchCondition[key].value === [] || searchCondition[key].value === {}) {
+                    continue;
+                }
+                let temp = {};
+                temp[key] = [searchCondition[key].value, searchCondition[key].type];
+                result.push(temp);
+            }
+            return JSON.stringify(result);
+        }
     }
 };
 Vue.use(plugins);

@@ -89,6 +89,7 @@ class AdminController extends CommonController
      */
     public function destroy($id)
     {
-        //
+        $result = $this->server->destroy($id);
+        return $this->responseResult($result);
     }
 }

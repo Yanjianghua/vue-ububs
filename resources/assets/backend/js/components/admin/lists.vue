@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="search-box">
-            <Input v-model="search.username" placeholder="请输入搜索帐号" style="width: 150px"></Input>
-            <Select v-model="search.permission_id" placeholder="请选择管理员等级" style="width:150px">
+            <Input v-model="search.username.value" placeholder="请输入搜索帐号" style="width: 150px"></Input>
+            <Select v-model="search.permission_id.value" placeholder="请选择管理员等级" style="width:150px">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
             <Button type="primary">搜索</Button>

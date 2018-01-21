@@ -71054,8 +71054,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         return {
             search: {
-                username: '',
-                permission_id: ''
+                username: {
+                    'value': '',
+                    'type': 'like'
+                },
+                permission_id: {
+                    'value': '',
+                    'type': '='
+                }
             },
             cityList: [{
                 value: 'New York',
@@ -71127,8 +71133,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         getLists: function getLists() {
             var _this = this;
+            var search = Vue.parseSearch(_this.search);
             var paramsData = {
-                'search': _this.search,
+                'search': search,
                 'page': _this.pagination.currentPage,
                 'pageSize': _this.pagination.pageSize
             };
@@ -71191,11 +71198,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "请输入搜索帐号"
     },
     model: {
-      value: (_vm.search.username),
+      value: (_vm.search.username.value),
       callback: function($$v) {
-        _vm.$set(_vm.search, "username", $$v)
+        _vm.$set(_vm.search.username, "value", $$v)
       },
-      expression: "search.username"
+      expression: "search.username.value"
     }
   }), _vm._v(" "), _c('Select', {
     staticStyle: {
@@ -71205,11 +71212,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "请选择管理员等级"
     },
     model: {
-      value: (_vm.search.permission_id),
+      value: (_vm.search.permission_id.value),
       callback: function($$v) {
-        _vm.$set(_vm.search, "permission_id", $$v)
+        _vm.$set(_vm.search.permission_id, "value", $$v)
       },
-      expression: "search.permission_id"
+      expression: "search.permission_id.value"
     }
   }, _vm._l((_vm.cityList), function(item) {
     return _c('Option', {
@@ -71394,6 +71401,22 @@ var plugins = {
         Vue.getY = function (evt) {
             evt = evt || window.event;
             return evt.clientY;
+        };
+        // 过滤search条件
+        Vue.parseSearch = function (searchCondition) {
+            var result = [];
+            if (Object.keys(searchCondition).length == 0) {
+                return result;
+            }
+            for (var key in searchCondition) {
+                if (searchCondition[key].value === '' || searchCondition[key].value === [] || searchCondition[key].value === {}) {
+                    continue;
+                }
+                var temp = {};
+                temp[key] = [searchCondition[key].value, searchCondition[key].type];
+                result.push(temp);
+            }
+            return JSON.stringify(result);
         };
     }
 };

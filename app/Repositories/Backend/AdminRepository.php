@@ -22,7 +22,18 @@ class AdminRepository extends CommonRepository
     {
         $search = isset($input['search']) ? (array) $input['search'] : [];
         $pageSize = isset($input['pageSize']) ? intval($input['pageSize']): 10;
-        $result = DB::table('admins')->paginate($pageSize);
+        $result = $this->model->paginate($pageSize);
+        return $result;
+    }
+
+    /**
+     * 删除
+     * @param  int|array $ids
+     * @return boolean
+     */
+    public function destroy($ids)
+    {
+        $result = (bool) $this->model->destroy($ids);
         return $result;
     }
 }

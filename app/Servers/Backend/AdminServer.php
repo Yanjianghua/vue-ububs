@@ -111,11 +111,9 @@ class AdminServer extends CommonServer
     public function destroy($id)
     {
         $result = $this->admin->destroy($id);
-
         if (!$result) {
             return ['code' => ['x00002', 'system']];
         }
-
         return ['删除成功', $result];
     }
 }
