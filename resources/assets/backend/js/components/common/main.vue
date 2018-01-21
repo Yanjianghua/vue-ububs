@@ -21,6 +21,9 @@
                     </Footer>
                 </Layout>
             </Layout>
+            <div class="top-inner" v-show="scrollTopVisit" @click.stop="returnTop">
+                <span><Icon type="chevron-up"></Icon></span>
+            </div>
         </Layout>
     </div>
 </template>

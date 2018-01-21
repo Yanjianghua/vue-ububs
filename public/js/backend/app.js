@@ -70316,7 +70316,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".layout{\r\n        border: 1px solid #d7dde4;\r\n        background: #f5f7f9;\r\n        position: relative;\r\n        border-radius: 4px;\r\n        overflow: hidden;\r\n    }\r\n    .layout-header-bar{\r\n        background: #fff;\r\n        box-shadow: 0 1px 1px rgba(0,0,0,.1);\r\n    }\r\n\r\n.layout-logo {\r\n    width: 100px;\r\n    height: 30px;\r\n    background: #5b6270;\r\n    border-radius: 3px;\r\n    float: left;\r\n    position: relative;\r\n    top: 15px;\r\n    left: 20px;\r\n}\r\n\r\n.layout-nav {\r\n    width: 600px;\r\n    margin: 0 auto;\r\n    margin-right: 20px;\r\n}\r\n.search-box {\r\n    margin-bottom: 20px;\r\n}\r\n.table-footer {\r\n    padding: 20px 0;\r\n}\r\n.table-footer .batch-box {\r\n    float: left;\r\n}\r\n.table-footer .pagination-box {\r\n    float: right;\r\n    text-align: right;\r\n}", ""]);
+exports.push([module.i, ".layout {\r\n    border: 1px solid #d7dde4;\r\n    background: #f5f7f9;\r\n    position: relative;\r\n    border-radius: 4px;\r\n    overflow: hidden;\r\n}\r\n\r\n.layout-header-bar {\r\n    background: #fff;\r\n    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);\r\n}\r\n\r\n.layout-logo {\r\n    width: 100px;\r\n    height: 30px;\r\n    background: #5b6270;\r\n    border-radius: 3px;\r\n    float: left;\r\n    position: relative;\r\n    top: 15px;\r\n    left: 20px;\r\n}\r\n\r\n.layout-nav {\r\n    width: 600px;\r\n    margin: 0 auto;\r\n    margin-right: 20px;\r\n}\r\n\r\n.search-box {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.table-footer {\r\n    padding: 20px 0;\r\n}\r\n\r\n.table-footer .batch-box {\r\n    float: left;\r\n}\r\n\r\n.table-footer .pagination-box {\r\n    float: right;\r\n    text-align: right;\r\n}\r\n\r\n.top-inner {\r\n    position: fixed;\r\n    bottom: 30px;\r\n    right: 30px;\r\n    cursor: pointer;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, .6);\r\n    border-radius: 2px;\r\n    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);\r\n    transition: all .2s ease-in-out;\r\n    z-index: 9000;\r\n}\r\n\r\n.top-inner:hover {\r\n    background-color: rgba(0, 0, 0, .7);\r\n}\r\n\r\n.top-inner i {\r\n    color: #fff;\r\n    font-size: 24px;\r\n    padding: 8px 12px;\r\n}", ""]);
 
 // exports
 
@@ -70340,12 +70340,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            breadcrumbItem: {}
+            scrollTopVisit: false
         };
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
 
-    methods: {}
+    methods: {
+        handleScroll: function handleScroll() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (scrollTop > 200) {
+                this.scrollTopVisit = true;
+            } else {
+                this.scrollTopVisit = false;
+            }
+        },
+        returnTop: function returnTop() {
+            var scroptTopTimer = setInterval(function () {
+                document.documentElement.scrollTop = document.documentElement.scrollTop - 50;
+                if (document.documentElement.scrollTop == 0) {
+                    clearInterval(scroptTopTimer);
+                }
+            }, 10);
+
+            // console.log(document.body.scrollTop);
+            // console.log();
+            // document.body.scrollTop = 0
+            // document.documentElement.scrollTop = 0
+        }
+    }
 });
 
 /***/ }),
@@ -70744,7 +70768,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }, [_c('router-view')], 1), _vm._v(" "), _c('Footer', {
     staticClass: "layout-footer-center"
-  }, [_c('p', [_vm._v("版权所有：2018 © www.ububs.com")]), _vm._v(" "), _c('p', [_vm._v("联系邮箱：linlm1994@gmail.com")])])], 1)], 1)], 1)], 1)
+  }, [_c('p', [_vm._v("版权所有：2018 © www.ububs.com")]), _vm._v(" "), _c('p', [_vm._v("联系邮箱：linlm1994@gmail.com")])])], 1)], 1), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.scrollTopVisit),
+      expression: "scrollTopVisit"
+    }],
+    staticClass: "top-inner",
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.returnTop($event)
+      }
+    }
+  }, [_c('span', [_c('Icon', {
+    attrs: {
+      "type": "chevron-up"
+    }
+  })], 1)])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
