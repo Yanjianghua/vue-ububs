@@ -25,26 +25,15 @@ class LoginServer extends CommonServer
         if (!$account || !$password) {
             return ['code' => '002x001'];
         }
-        $result = $this->login->login($account, $password, $remeber);
-        if (!$result) {
+        $result['list'] = $this->login->login($account, $password, $remeber);
+        if (!$result['list']) {
             return ['code' => '002x002'];
         }
-        return [
-            'data'    => [
-                'list' => [
-                    'username' => $result->username,
-                    'email'    => $result->email,
-                ],
-            ],
-            'message' => '登录成功',
-        ];
+        return ['登录成功', $result];
     }
     public function logout()
     {
         $result = $this->login->logout();
-        return [
-            'data' => [],
-            'message' => '退出成功'
-        ];
+        return ['退出成功'];
     }
 }

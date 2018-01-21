@@ -22,6 +22,9 @@ Object.keys(filters).forEach(key => {
 
 const app = new Vue({
     beforeCreate() {
+    	if (localStorage.hasOwnProperty('admin_data')) {
+    		this.$store.commit('setStateValue', { 'admin_data': JSON.parse(localStorage.getItem('admin_data')) });
+    	}
     },
     router,
     store

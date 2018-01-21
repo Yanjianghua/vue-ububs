@@ -6,7 +6,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         'loading': false,
-        'admin_data': JSON.parse(localStorage.getItem('admin_data'))
+        'admin_data': []
     },
     mutations: {
         setStateValue(state, data) {

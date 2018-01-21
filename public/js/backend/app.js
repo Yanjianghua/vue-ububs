@@ -69992,7 +69992,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
         'loading': false,
-        'admin_data': JSON.parse(localStorage.getItem('admin_data'))
+        'admin_data': []
     },
     mutations: {
         setStateValue: function setStateValue(state, data) {
@@ -70072,7 +70072,11 @@ Object.keys(__WEBPACK_IMPORTED_MODULE_4__filter__).forEach(function (key) {
 });
 
 var app = new Vue({
-    beforeCreate: function beforeCreate() {},
+    beforeCreate: function beforeCreate() {
+        if (localStorage.hasOwnProperty('admin_data')) {
+            this.$store.commit('setStateValue', { 'admin_data': JSON.parse(localStorage.getItem('admin_data')) });
+        }
+    },
 
     router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */],
     store: __WEBPACK_IMPORTED_MODULE_0__vuex__["a" /* default */]
@@ -70213,7 +70217,7 @@ router.afterEach(function () {});
 
 
 /* styles */
-__webpack_require__(113)
+__webpack_require__(80)
 
 var Component = __webpack_require__(3)(
   /* script */
@@ -70246,8 +70250,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */,
-/* 81 */,
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(81);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("ecbca288", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2f598b88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2f598b88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.layout {\n  border: 1px solid #d7dde4;\n  background: #f5f7f9;\n  position: relative;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.layout-header-bar {\n  background: #fff;\n  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n}\n.layout-logo {\n  width: 100px;\n  height: 30px;\n  background: #5b6270;\n  border-radius: 3px;\n  float: left;\n  position: relative;\n  top: 15px;\n  left: 20px;\n}\n.layout-nav {\n  width: 600px;\n  margin: 0 auto;\n  margin-right: 20px;\n}\n.search-box {\n  margin-bottom: 20px;\n}\n.table-footer {\n  padding: 20px 0;\n}\n.table-footer .batch-box {\n    float: left;\n}\n.table-footer .pagination-box {\n    float: right;\n    text-align: right;\n}\n.top-inner {\n  position: fixed;\n  bottom: 30px;\n  right: 30px;\n  cursor: pointer;\n  text-align: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n  -webkit-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  z-index: 9000;\n}\n.top-inner i {\n    color: #fff;\n    font-size: 24px;\n    padding: 8px 12px;\n}\n.top-inner:hover {\n  background-color: rgba(0, 0, 0, 0.7);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70394,6 +70436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/backend/logout').then(function (response) {
                 var message = response.data.message;
 
+                localStorage.removeItem("admin_data");
                 _this.$store.commit('setStateValue', { 'admin_data': {} });
                 _this.$Message.success(message);
                 _this.$router.push({ path: '/login' });
@@ -71063,7 +71106,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         },
                         on: {
                             click: function click() {
-                                _this2.remove(params.index);
+                                _this2.delete(params.index);
                             }
                         }
                     }, 'Delete')]);
@@ -71104,8 +71147,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 content: this.data[index].name
             });
         },
-        remove: function remove(index) {
-            this.data.splice(index, 1);
+        delete: function _delete(index) {
+            var _this3 = this;
+
+            var _this = this;
+            _this.$Modal.confirm({
+                title: '删除操作',
+                content: '<p>确定要删除这个管理员吗？</p>',
+                onOk: function onOk() {
+                    axios.delete('/backend/admins/' + _this3.data[index].id).then(function (response) {
+                        var message = response.data.message;
+
+                        _this.$Message.info(message);
+                        _this.data.splice(index, 1);
+                    });
+                }
+            });
         },
 
         currentPageChange: function currentPageChange(currentPage) {
@@ -71463,48 +71520,6 @@ function defaultValue(value, defaultString) {
     }
     return value;
 }
-
-/***/ }),
-/* 111 */,
-/* 112 */,
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(114);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("ecbca288", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2f598b88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2f598b88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.layout {\n  border: 1px solid #d7dde4;\n  background: #f5f7f9;\n  position: relative;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.layout-header-bar {\n  background: #fff;\n  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n}\n.layout-logo {\n  width: 100px;\n  height: 30px;\n  background: #5b6270;\n  border-radius: 3px;\n  float: left;\n  position: relative;\n  top: 15px;\n  left: 20px;\n}\n.layout-nav {\n  width: 600px;\n  margin: 0 auto;\n  margin-right: 20px;\n}\n.search-box {\n  margin-bottom: 20px;\n}\n.table-footer {\n  padding: 20px 0;\n}\n.table-footer .batch-box {\n    float: left;\n}\n.table-footer .pagination-box {\n    float: right;\n    text-align: right;\n}\n.top-inner {\n  position: fixed;\n  bottom: 30px;\n  right: 30px;\n  cursor: pointer;\n  text-align: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n  -webkit-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n  z-index: 9000;\n}\n.top-inner i {\n    color: #fff;\n    font-size: 24px;\n    padding: 8px 12px;\n}\n.top-inner:hover {\n  background-color: rgba(0, 0, 0, 0.7);\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

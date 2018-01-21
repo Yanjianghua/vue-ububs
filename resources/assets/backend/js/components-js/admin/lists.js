@@ -6,10 +6,9 @@ export default {
                 permission_id: '',
             },
             cityList: [{
-                    value: 'New York',
-                    label: 'New York'
-                }
-            ],
+                value: 'New York',
+                label: 'New York'
+            }],
             columns: [{
                     type: 'selection',
                     width: 60,
@@ -62,7 +61,7 @@ export default {
                                 },
                                 on: {
                                     click: () => {
-                                        this.remove(params.index)
+                                        this.delete(params.index)
                                     }
                                 }
                             }, 'Delete')
@@ -90,7 +89,7 @@ export default {
                 'pageSize': _this.pagination.pageSize
             };
             axios.get('/backend/admins', { params: paramsData }).then((response) => {
-                let {data, message} = response.data;
+                let { data, message } = response.data;
                 _this.data = data.lists.data;
                 _this.pagination.total = data.lists.total;
             })
@@ -101,8 +100,19 @@ export default {
                 content: this.data[index].name
             })
         },
-        remove(index) {
-            this.data.splice(index, 1);
+        delete(index) {
+            let _this = this;
+            _this.$Modal.confirm({
+                title: '删除操作',
+                content: '<p>确定要删除这个管理员吗？</p>',
+                onOk: () => {
+                    axios.delete('/backend/admins/' + this.data[index].id).then(response => {
+                        let { message } = response.data;
+                        _this.$Message.info(message);
+                        _this.data.splice(index, 1);
+                    });
+                }
+            });
         },
         currentPageChange: function(currentPage) {
             this.pagination.currentPage = currentPage;

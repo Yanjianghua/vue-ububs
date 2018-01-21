@@ -35,7 +35,10 @@ class BaseController extends Controller
             ]);
         }
         // 返回成功信息
-        $result['status'] = true;
-        return response()->json($result);
+        return response()->json([
+            'status'  => true,
+            'data'    => isset($result[1]) ? $result[1] : [],
+            'message' => isset($result[0]) ? $result[0] : '执行成功',
+        ]);
     }
 }
